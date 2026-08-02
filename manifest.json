@@ -1,0 +1,79 @@
+{
+  "id": "@ryu/whiteboard",
+  "name": "Whiteboard",
+  "version": "1.0.0",
+  "surfaces": {
+    "gateway": { "support": "none" },
+    "core": { "support": "full" },
+    "desktop": { "support": "full" },
+    "island": { "support": "limited" },
+    "mobile": { "support": "limited" },
+    "extension": { "support": "none" },
+    "web": { "support": "full" },
+    "cli": { "support": "list" }
+  },
+  "runnables": [
+    {
+      "id": "whiteboard-companion",
+      "name": "Whiteboard",
+      "kind": "companion",
+      "config": {
+        "label": "Whiteboard",
+        "ui_entry": "./dist/index.html",
+        "ui_format": "html"
+      }
+    }
+  ],
+  "requires": {
+    "apps": [
+      {
+        "id": "@ryu/spaces"
+      }
+    ],
+    "grants": ["spaces:docs"]
+  },
+  "permission_grants": ["spaces:docs", "hook:side-model"],
+  "companion": {
+    "label": "Whiteboard",
+    "icon": "shapes"
+  },
+  "contributes": {
+    "sidebar_sections": [
+      {
+        "id": "whiteboard",
+        "title": "Whiteboard",
+        "icon": "shapes",
+        "spec": {
+          "source": {
+            "http": {
+              "method": "GET",
+              "path": "/api/apps/@ryu/whiteboard/docs"
+            },
+            "items": "documents"
+          },
+          "itemTarget": "/spaces/{{item.space_id}}/app/@ryu/whiteboard/{{item.id}}",
+          "create": {
+            "http": {
+              "method": "POST",
+              "path": "/api/apps/@ryu/whiteboard/docs"
+            },
+            "targetFrom": "id",
+            "label": "New whiteboard"
+          },
+          "itemActions": [
+            {
+              "id": "delete",
+              "label": "Delete",
+              "icon": "lucide:trash-2",
+              "style": "danger",
+              "http": {
+                "method": "DELETE",
+                "path": "/api/spaces/{{item.space_id}}/documents/{{item.id}}"
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}
