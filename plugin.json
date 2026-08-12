@@ -1,0 +1,18 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "ryu.whiteboard",
+  "version": "1.0.0",
+  "description": "An Excalidraw whiteboard shipped as a Ryu app: draw, diagram, and rearrange freely, with Mermaid-to-Excalidraw bundled so a diagram can be imported straight from text. Each board persists as a Space document, so it stays editable, shareable, and searchable.",
+  "keywords": [
+    "whiteboard",
+    "drawing",
+    "diagrams",
+    "excalidraw"
+  ],
+  "extensions": {
+    "com.ryuhq.ryu": {
+      "id": "@ryu/whiteboard",
+      "displayName": "Whiteboard"
+    }
+  }
+}
