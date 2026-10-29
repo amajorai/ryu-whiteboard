@@ -1,0 +1,221 @@
+{
+  "version": 1,
+  "package": "whiteboard",
+  "scope": "complete",
+  "expectedRows": 16,
+  "selector": {
+    "spec": "e2e/whiteboard-companion.spec.ts",
+    "config": "e2e/whiteboard-companion.playwright.config.ts"
+  },
+  "evidenceBoundary": "The built single-file Whiteboard app runs inside the sandboxed ExtensionHost with deterministic local Space, model-catalog, model-completion, and image-search services. Rendered tests verify persisted Space read-back, exact bridge request payloads, and selected image bytes. No live Core, provider, network image service, or account is used.",
+  "assertions": [
+    {
+      "row": {
+        "package": "whiteboard",
+        "source_file": "apps-store/whiteboard/ui/src/ImagePicker.tsx",
+        "line": "90",
+        "component": "ImagePicker",
+        "tag": "Dialog",
+        "events": "onOpenChange"
+      },
+      "testTitle": "searches attributed images by provider and persists the selected image file",
+      "assertionName": "The image dialog closes after a result is selected.",
+      "assertionMarker": "await expect(dialog).toBeHidden();"
+    },
+    {
+      "row": {
+        "package": "whiteboard",
+        "source_file": "apps-store/whiteboard/ui/src/ImagePicker.tsx",
+        "line": "100",
+        "component": "ImagePicker",
+        "tag": "NativeSelect",
+        "events": "onChange"
+      },
+      "testTitle": "searches attributed images by provider and persists the selected image file",
+      "assertionName": "Choosing Unsplash surfaces its missing node-key state and sends the selected provider.",
+      "assertionMarker": "source.selectOption(\"unsplash\");"
+    },
+    {
+      "row": {
+        "package": "whiteboard",
+        "source_file": "apps-store/whiteboard/ui/src/ImagePicker.tsx",
+        "line": "114",
+        "component": "ImagePicker",
+        "tag": "Input",
+        "events": "onChange"
+      },
+      "testTitle": "searches attributed images by provider and persists the selected image file",
+      "assertionName": "The debounced search term reaches the local image-search bridge.",
+      "assertionMarker": "query.fill(\"board sketch\");"
+    },
+    {
+      "row": {
+        "package": "whiteboard",
+        "source_file": "apps-store/whiteboard/ui/src/ImagePicker.tsx",
+        "line": "137",
+        "component": "ImagePicker",
+        "tag": "Button",
+        "events": "onClick"
+      },
+      "testTitle": "searches attributed images by provider and persists the selected image file",
+      "assertionName": "The visible result is selected and becomes a persisted embedded image file.",
+      "assertionMarker": "await result.click();"
+    },
+    {
+      "row": {
+        "package": "whiteboard",
+        "source_file": "apps-store/whiteboard/ui/src/Whiteboard.tsx",
+        "line": "391",
+        "component": "Whiteboard",
+        "tag": "Button",
+        "events": "onClick"
+      },
+      "testTitle": "retries the Space read after a transient failure",
+      "assertionName": "Retry performs a second document read and restores the board.",
+      "assertionMarker": "await app.getByRole(\"button\", { name: \"Try again\" }).click();"
+    },
+    {
+      "row": {
+        "package": "whiteboard",
+        "source_file": "apps-store/whiteboard/ui/src/Whiteboard.tsx",
+        "line": "417",
+        "component": "Whiteboard",
+        "tag": "Input",
+        "events": "onChange"
+      },
+      "testTitle": "draws a rectangle and persists the edited title and scene through Spaces",
+      "assertionName": "Changing the title is reflected in the persisted document.",
+      "assertionMarker": "title.fill(\"Release system map\");"
+    },
+    {
+      "row": {
+        "package": "whiteboard",
+        "source_file": "apps-store/whiteboard/ui/src/Whiteboard.tsx",
+        "line": "425",
+        "component": "Whiteboard",
+        "tag": "Button",
+        "events": "onClick"
+      },
+      "testTitle": "opens and cancels AI generation without calling a model",
+      "assertionName": "Generate opens the dialog before any model work starts.",
+      "assertionMarker": "await app.getByRole(\"button\", { name: \"Generate\", exact: true }).click();"
+    },
+    {
+      "row": {
+        "package": "whiteboard",
+        "source_file": "apps-store/whiteboard/ui/src/Whiteboard.tsx",
+        "line": "434",
+        "component": "Whiteboard",
+        "tag": "Button",
+        "events": "onClick"
+      },
+      "testTitle": "searches attributed images by provider and persists the selected image file",
+      "assertionName": "The toolbar image action opens the picker.",
+      "assertionMarker": "await app.getByRole(\"button\", { name: \"Insert image\", exact: true }).click();"
+    },
+    {
+      "row": {
+        "package": "whiteboard",
+        "source_file": "apps-store/whiteboard/ui/src/Whiteboard.tsx",
+        "line": "439",
+        "component": "Whiteboard",
+        "tag": "Excalidraw",
+        "events": "onChange"
+      },
+      "testTitle": "draws a rectangle and persists the edited title and scene through Spaces",
+      "assertionName": "An actual user-drawn rectangle is included in the saved scene.",
+      "assertionMarker": "element.type === \"rectangle\""
+    },
+    {
+      "row": {
+        "package": "whiteboard",
+        "source_file": "apps-store/whiteboard/ui/src/Whiteboard.tsx",
+        "line": "447",
+        "component": "Whiteboard",
+        "tag": "Dialog",
+        "events": "onOpenChange"
+      },
+      "testTitle": "opens and cancels AI generation without calling a model",
+      "assertionName": "Cancel closes the dialog without causing a model request.",
+      "assertionMarker": "await expect(dialog).toBeHidden();"
+    },
+    {
+      "row": {
+        "package": "whiteboard",
+        "source_file": "apps-store/whiteboard/ui/src/Whiteboard.tsx",
+        "line": "455",
+        "component": "Whiteboard",
+        "tag": "form",
+        "events": "onSubmit"
+      },
+      "testTitle": "generates with the selected Ryu model and saves the returned diagram",
+      "assertionName": "Submitting the dialog passes the selected model and request text to the bridge.",
+      "assertionMarker": "expect(modelCall?.input).toMatchObject({"
+    },
+    {
+      "row": {
+        "package": "whiteboard",
+        "source_file": "apps-store/whiteboard/ui/src/Whiteboard.tsx",
+        "line": "464",
+        "component": "Whiteboard",
+        "tag": "ModelAgentPicker",
+        "events": ""
+      },
+      "testTitle": "generates with the selected Ryu model and saves the returned diagram",
+      "assertionName": "The chosen runtime is displayed and forwarded with generation.",
+      "assertionMarker": "await expect(modelPicker).toContainText(\"whiteboard-fixture-model\");"
+    },
+    {
+      "row": {
+        "package": "whiteboard",
+        "source_file": "apps-store/whiteboard/ui/src/Whiteboard.tsx",
+        "line": "483",
+        "component": "Whiteboard",
+        "tag": "Input",
+        "events": "onChange"
+      },
+      "testTitle": "generates with the selected Ryu model and saves the returned diagram",
+      "assertionName": "Entering a diagram prompt enables the submit action.",
+      "assertionMarker": "await prompt.fill(\"show a review approval path\");"
+    },
+    {
+      "row": {
+        "package": "whiteboard",
+        "source_file": "apps-store/whiteboard/ui/src/Whiteboard.tsx",
+        "line": "492",
+        "component": "Whiteboard",
+        "tag": "Button",
+        "events": "onClick"
+      },
+      "testTitle": "opens and cancels AI generation without calling a model",
+      "assertionName": "Cancel leaves the board unchanged and performs no model request.",
+      "assertionMarker": "await dialog.getByRole(\"button\", { name: \"Cancel\" }).click();"
+    },
+    {
+      "row": {
+        "package": "whiteboard",
+        "source_file": "apps-store/whiteboard/ui/src/Whiteboard.tsx",
+        "line": "499",
+        "component": "Whiteboard",
+        "tag": "Button",
+        "events": ""
+      },
+      "testTitle": "generates with the selected Ryu model and saves the returned diagram",
+      "assertionName": "The submit action closes the dialog after the generated diagram is added.",
+      "assertionMarker": "await submit.click();"
+    },
+    {
+      "row": {
+        "package": "whiteboard",
+        "source_file": "apps-store/whiteboard/ui/src/Whiteboard.tsx",
+        "line": "510",
+        "component": "Whiteboard",
+        "tag": "ImagePicker",
+        "events": "onOpenChange,onSelect"
+      },
+      "testTitle": "searches attributed images by provider and persists the selected image file",
+      "assertionName": "Whiteboard receives the selected image data and persists it under the scene file ID.",
+      "assertionMarker": "scene.files[fileId]?.dataURL"
+    }
+  ]
+}
